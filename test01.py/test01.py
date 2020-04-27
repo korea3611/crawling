@@ -3,6 +3,7 @@ import requests
 import json
 
 news_id_li = []
+test = ''
 def get_news_id():
     key_word = str(input('key_word : '))
     key_word = '"' + key_word + '"'
