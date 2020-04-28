@@ -34,29 +34,30 @@ time.sleep(3)
 instagram_tags = []
 # instagram_tag_dates = []
 
-driver.get('https://www.instagram.com/explore/tags/개스타그램')
+driver.get('https://www.instagram.com/explore/tags/대중교통')
 
 time.sleep(3)
 
 driver.find_element_by_css_selector('div.v1Nh3.kIKUG._bz0w').click()
-for i in range(5):
-    time.sleep(1)
-    data = driver.find_element_by_css_selector('.C7I1f.X7jCj') # C7I1f X7jCj
-    tag_raw = data.text
-    tags = re.findall('#[A-Za-z0-9가-힣]+', tag_raw)
-    tag = ''.join(tags).replace("#"," ") # "#" 제거
-    tag_data = tag.split()
+try :
+    for i in range(5):
+        time.sleep(1)
+        data = driver.find_element_by_css_selector('.C7I1f.X7jCj') # C7I1f X7jCj
+        tag_raw = data.text
+        tags = re.findall('#[A-Za-z0-9가-힣]+', tag_raw)
+        tag = ''.join(tags).replace("#"," ") # "#" 제거
+        tag_data = tag.split()
 
-    for tag_one in tag_data:
-        instagram_tags.append(tag_one)
-    print(instagram_tags)
-    driver.find_element_by_css_selector('a._65Bje.coreSpriteRightPaginationArrow').click()
-    time.sleep(3)
-
+        for tag_one in tag_data:
+            instagram_tags.append(tag_one)
+        print(instagram_tags)
+        driver.find_element_by_css_selector('a._65Bje.coreSpriteRightPaginationArrow').click()
+        time.sleep(3)
+except : pass
 driver.close()
 
 dataframe = pd.DataFrame(instagram_tags)
-dataframe.to_csv("인스타크롤링결과1.csv", encoding='cp949')
+dataframe.to_csv("인스타크롤링결과2.csv", encoding='cp949')
 
 
 
